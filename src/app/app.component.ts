@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {logMessages} from "@angular-devkit/build-angular/src/builders/browser-esbuild/esbuild";
+import {DataService} from "./_services/data.service";
+import {User} from "./_models/User";
+import {AccountService} from "./_services/login-service.service";
 
 @Component({
   selector: 'app-root',
@@ -11,14 +13,20 @@ export class AppComponent implements OnInit{
 
   users: any;
 
-  constructor(private http: HttpClient) {  }
+  constructor(private dataService: DataService, public accountService: AccountService) {  }
 
   ngOnInit() {
+    this.getCurrentUser();
     this.getUsers();
   }
 
+  getCurrentUser() {
+    const currentUser = JSON.parse(localStorage.getItem('user'));
+    this.accountService.setCurrentUser(currentUser)
+  }
+
   getUsers() {
-    this.http.get('https://localhost:5000/users').subscribe({
+    this.dataService.getUsers().subscribe({
       next: value => this.users = value,
       error: err => console.log(err.message)
     })

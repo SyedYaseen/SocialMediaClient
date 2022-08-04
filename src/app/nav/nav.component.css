@@ -1,0 +1,13 @@
+
+.container {
+    width: 80%;
+}
+
+.dropdown {
+    margin: 1em;
+    cursor: pointer;
+}
+
+.dropdown > * {
+
+}
