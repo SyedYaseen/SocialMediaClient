@@ -11,3 +11,8 @@
 .dropdown > * {
 
 }
+
+.active-tab {
+    border-radius: 5px;
+    background-color: black;
+}

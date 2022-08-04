@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 import {AccountService} from "../_services/login-service.service";
+import {Router} from "@angular/router";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-nav',
@@ -14,7 +16,7 @@ export class NavComponent implements OnInit {
     password: new FormControl()
   })
 
-  constructor(public accountService: AccountService) {
+  constructor(public accountService: AccountService, private router: Router, private toastrService: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -23,13 +25,16 @@ export class NavComponent implements OnInit {
   login() {
     this.accountService.loginRequest(this.loginForm.value).subscribe({
       next: data => {
-        console.log(data);
+        this.router.navigateByUrl('/members');
+        this.toastrService.success("Login Success")
       },
-      error: err => console.log(err.message)
+
+      error: err => this.toastrService.error(err.error)
     })
   }
 
   logout() {
+    this.router.navigateByUrl('/');
     this.accountService.logout();
   }
 }

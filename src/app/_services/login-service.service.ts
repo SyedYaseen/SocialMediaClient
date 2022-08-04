@@ -37,6 +37,7 @@ export class AccountService {
 
   logout() {
     this.currentUser.next(null);
+
     localStorage.removeItem('user');
   }
 
