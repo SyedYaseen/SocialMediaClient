@@ -1,0 +1,11 @@
+<button class="btn-primary mt-5" (click)="get500()">500 Server err</button>
+<button class="btn-primary mt-5" (click)="get404Err()">Not found 404 </button>
+<button class="btn-primary mt-5" (click)="get401Err()">401 un auth</button>
+<button class="btn-primary mt-5" (click)="get400Err()">400 err bad req</button>
+<button class="btn-primary mt-5" (click)="get400ValidationErr()">400 Validation err</button>
+
+<ul>
+    <li *ngFor="let item of validationErrors"> {{item}}</li>
+</ul>
+
+

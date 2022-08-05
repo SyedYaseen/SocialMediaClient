@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {ToastrModule} from 'ngx-toastr'
 import { AppComponent } from './app.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { NavComponent } from './nav/nav.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {BsDropdownModule} from "ngx-bootstrap/dropdown";
@@ -16,6 +16,10 @@ import {AppRoutingModule} from "./app-routing.module";
 import {RouterModule} from "@angular/router";
 import {SharedModule} from "./_modules/shared.module";
 import {ListsComponent} from "./lists/lists.component";
+import { ErrorTestComponent } from './_errors/error-test/error-test.component';
+import {ErrorsInterceptor} from "./_errors/errors.interceptor";
+import { NotFoundComponent } from './_errors/not-found/not-found.component';
+import { ServerErrorComponent } from './_errors/server-error/server-error.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +30,10 @@ import {ListsComponent} from "./lists/lists.component";
     MemberlistComponent,
     MemberDetailComponent,
     MessagesComponent,
-    ListsComponent
+    ListsComponent,
+    ErrorTestComponent,
+    NotFoundComponent,
+    ServerErrorComponent
   ],
     imports: [
         BrowserModule,
@@ -38,7 +45,7 @@ import {ListsComponent} from "./lists/lists.component";
         RouterModule,
         SharedModule
     ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: ErrorsInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

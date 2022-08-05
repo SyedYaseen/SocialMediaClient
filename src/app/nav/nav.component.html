@@ -17,6 +17,9 @@
                     <a class="nav-link disabled">Messages</a>
                 </li>
                 </ng-container>
+                <li class="nav-item" routerLinkActive="active-tab" routerLink="/errors">
+                    <a class="nav-link disabled">Errors</a>
+                </li>
             </ul>
             
             <form class="d-flex" [formGroup]="loginForm" role="search" (ngSubmit)="login()"  *ngIf="(accountService.currentUser$ | async) === null">
