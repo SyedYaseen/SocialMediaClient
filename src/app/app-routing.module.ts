@@ -12,6 +12,7 @@ import {NotFoundComponent} from "./_errors/not-found/not-found.component";
 import {ServerErrorComponent} from "./_errors/server-error/server-error.component";
 
 const routes: Routes = [
+  // {path: login, component: LoginComp},
   {path: '', component: HomeComponent},
   {path: '',
     canActivate: [AuthGuard],

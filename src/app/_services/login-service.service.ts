@@ -6,6 +6,7 @@ import {User} from "../_models/User";
 @Injectable({
   providedIn: 'root'
 })
+
 export class AccountService {
   baseUrl= 'https://localhost:5001/api/';
   currentUser = new ReplaySubject<User>(1);
@@ -17,6 +18,7 @@ export class AccountService {
     return this.http.post(this.baseUrl+'account/login', loginDetails).pipe(
         map((user: User) => {
           if(user){
+              console.log(user);
             this.currentUser.next(user);
             localStorage.setItem('user', JSON.stringify(user));
           }

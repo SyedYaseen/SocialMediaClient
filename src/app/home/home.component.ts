@@ -18,4 +18,8 @@ export class HomeComponent implements OnInit {
     this.isRegistering = !this.isRegistering;
   }
 
+  isTrue(){
+    return true;
+  }
+
 }
